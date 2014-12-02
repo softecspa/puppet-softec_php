@@ -113,3 +113,14 @@ include softec\_php::ming
 
 include softec\_php::uploadprogress (through pecl)
  * php\_uploadprogress\_version: '1.0.3.1'
+
+### Other modules
+You can use others customized-install modules by use the following includes:
+
+ * include softec\_php::ioncube
+ * include softec\_php::pear
+ * include softec\_php::xhprof
+
+Other extensions can be installed by softec\_php::module and softec\_php::extension defines. The difference between defines:
+
+ * softec\_php::modules must be used when the specific extension is managed by puppetlabs-php module: Refer to: http://http://puppet-php.readthedocs.org/en/latest/extensions.html
