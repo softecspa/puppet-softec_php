@@ -70,6 +70,9 @@ php_apc_settings:
 </code></pre>
 
 ### memcache
+
+include softec\_php::memcache
+
 Like apc but with the following parameters:
 
 <pre><code>
@@ -81,11 +84,32 @@ php_memcache_settings:
 </code></pre>
 
 ### opcache
+
+include softec\_php::opcache
+
 This module is installed throuh pecl. Only version to install can be specified without pinning
 
 <pre><code>
 php_opcache_version: '0.7.2'
-php_opcache_settings: #LIST IN FORM OF AUGEAS COMMANDS
+php_opcache_settings:
     'set .anon/opcache.memory_consumption': '128'
     'set .anon/opcache.interned_strings_buffer': '8'
 </code></pre>
+
+### imagick - xdebug - ming - uploadprogress
+All this modules have different version from php5-common. Version of this module can be specified like this examples:
+
+include softec\_php::imagick
+ * php\_imagick\_version:         "3.1.0~rc2-1~%{::lsbdistcodename}+1"
+ * php\_imagick\_major\_version:  '3'
+
+include softec\_php::xdebug
+ * php\_xdebug\_version:         "2.2.1-1~%{::lsbdistcodename}+1"
+ * php\_xdebug\_major\_version:   '2'
+
+include softec\_php::ming
+ * php\_ming\_version:           "1:0.4.4-1.1~%{::lsbdistcodename}+1"
+ * php\_ming\_major\_version:     '1'
+
+include softec\_php::uploadprogress (through pecl)
+ * php\_uploadprogress\_version: '1.0.3.1'
