@@ -37,8 +37,9 @@ If php\_version is set to latest you can specify php\_major\_version and all php
 include softec\_php::apache
 
 Specific configs can be set only for apache use through and hiera hash. Example:
-
+<pre><code>
 php\_apache\_settings:
     'set .anon/disable_functions': '"phpinfo"'
     'set .anon/error_reporting': '"E_ALL & ~ (E_STRICT | E_NOTICE)"'
     'set .anon/expose_php': 'Off'
+</code></pre>
