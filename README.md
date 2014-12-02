@@ -32,6 +32,9 @@ If php\_version is set to latest you can specify php\_major\_version and all php
 
 ## PHP modules
 
+If php modules uses the same version of php5-common package. It will follows the same sules specified above. If the module uses a different version it will has its specific hiera variables.
+Some module have also an hiera hash that can be used to manage configuration.
+
 ### libapache2-mod-php5
 
 include softec\_php::apache
@@ -39,9 +42,9 @@ include softec\_php::apache
 Specific configs can be set only for apache use through and hiera hash. Example:
 <pre><code>
 php_apache_settings:
-    'set .anon/disable_functions': '"phpinfo"'
-    'set .anon/error_reporting': '"E_ALL & ~ (E_STRICT | E_NOTICE)"'
-    'set .anon/expose_php': 'Off'
+    'set PHP/disable_functions': '"phpinfo"'
+    'set PHP/error_reporting': '"E_ALL & ~ (E_STRICT | E_NOTICE)"'
+    'set PHP/expose_php': 'Off'
 </code></pre>
 
 ### php5-cli
@@ -75,4 +78,14 @@ php_memcache_major_version: '3'
 php_memcache_settings:
     'set memcache/memcache.dbpath': '/var/lib/memcache'
     'set memcache/memcache.maxreclevel': '0'
+</code></pre>
+
+### opcache
+This module is installed throuh pecl. Only version to install can be specified without pinning
+
+<pre><code>
+php_opcache_version: '0.7.2'
+php_opcache_settings: #LIST IN FORM OF AUGEAS COMMANDS
+    'set .anon/opcache.memory_consumption': '128'
+    'set .anon/opcache.interned_strings_buffer': '8'
 </code></pre>
