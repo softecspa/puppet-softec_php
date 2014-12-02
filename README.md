@@ -121,6 +121,16 @@ You can use others customized-install modules by use the following includes:
  * include softec\_php::pear
  * include softec\_php::xhprof
 
-Other extensions can be installed by softec\_php::module and softec\_php::extension defines. The difference between defines:
+## softec\_php::module
+softec\_php::modules define is used to install other php extension. It will be used if module is managed by appropriate class in puppetlabs-php module. Please refer to http://puppet-php.readthedocs.org/en/latest/extensions.html.
 
- * softec\_php::modules must be used when the specific extension is managed by puppetlabs-php module: Refer to: http://http://puppet-php.readthedocs.org/en/latest/extensions.html
+Examples:
+
+ * softec\_php::module{'ldap':} (http://puppet-php.readthedocs.org/en/latest/extensions.html#ldap)
+
+## softec\_php::extension
+If module is not managed by puppetlabs-php module you can use this define.
+
+Examples:
+
+ * softec\_php::extension{'recode':}
