@@ -55,7 +55,7 @@ Like apache, you can configure specific parameter only for cli through hiera has
 ### apc
 include softec\_php::apc
 
-Like php version you can specify version and pinning to a specific or major version. You can also manage conf ever by hiera. Examples:
+Like php you can specify version and pinning to a specific or major version. You can also manage conf ever by hiera. Examples:
 
 <pre><code>
 php_apc_version: "3.1.13-1~%{::lsbdistcodename}+1"
@@ -66,4 +66,13 @@ php_apc_settings:
     'set .anon/apc.mmap_file_mask': '/tmp/apc.XXXXXX'
 </code></pre>
 
+### memcache
+Like apc but with the following parameters:
 
+<pre><code>
+php_memcache_version: "3.0.6-5~%{::lsbdistcodename}+1"
+php_memcache_major_version: '3'
+php_memcache_settings:
+    'set memcache/memcache.dbpath': '/var/lib/memcache'
+    'set memcache/memcache.maxreclevel': '0'
+</code></pre>
