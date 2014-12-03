@@ -22,7 +22,7 @@ class softec_php::varnish {
     mode    => 644,
     owner   => 'root',
     group   => 'root',
-    content => '; GENERATED WITH PUPPET\nextension=varnish.so',
+    content => ";GENERATED WITH PUPPET\nextension=varnish.so",
   } ->
 
   file {'/etc/php5/conf.d/varnish.ini':
