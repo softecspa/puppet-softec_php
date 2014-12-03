@@ -28,11 +28,19 @@ class softec_php {
     ensure  => absent
   }
 
+  if defined(Exec['apache2-graceful']) {
+    $notify_config = Exec['apache2-graceful']
+  } else {
+    $notify_config = undef
+  }
+
   # Install extensions
   Php::Extension <| |>
   # Configure extensions
-  -> Php::Config <| |>
+  -> Php::Config <| |> {
+    notify  => $notify_config
+  }
   # Reload webserver
-  ~> Exec['apache2-graceful']
+  #~> Exec['apache2-graceful']
 
 }
