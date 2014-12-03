@@ -6,7 +6,8 @@
 class softec_php::xhprof {
 
   require softec_php
-  include ::php
+  include ::php::params
+
 	$tmpdir = "/tmp/xhprof"
 	$phpinfo_cli = "echo '<?php phpinfo(); ?>' | php -i"
 
@@ -27,11 +28,6 @@ class softec_php::xhprof {
     owner   => root,
     group   => root,
     source  => "puppet:///modules/softec_php/xhprof.ini",
-  }
-
-  exec { "xhprof-apache2-reload":
-    command		=> "/etc/init.d/apache2 force-reload",
-    subscribe	=> File["${::php::params::config_root}/conf.d/xhprof.ini"],
-    refreshonly	=> true,
+    notify  => Exec['apache2-graceful']
   }
 }

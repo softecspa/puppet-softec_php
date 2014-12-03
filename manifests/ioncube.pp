@@ -3,6 +3,8 @@ class softec_php::ioncube (
   $version      = '5.4'
 ) {
 
+  require softec_php
+
   if $::lsbdistrelease < 10 {
     fail('php5::ioncube is available only for ubuntu 10.04 and newer')
   }

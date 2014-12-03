@@ -1,5 +1,6 @@
 class softec_php::uploadprogress {
 
+  require softec_php
   require softec_php::pear
   $php_uploadprogress_version = hiera('php_uploadprogress_version')
 

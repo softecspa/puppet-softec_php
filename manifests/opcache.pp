@@ -1,5 +1,6 @@
 class softec_php::opcache {
 
+  require softec_php
   require softec_php::pear
   include ::php::params
   $php_opcache_version  = hiera('php_opcache_version')
@@ -14,7 +15,7 @@ class softec_php::opcache {
   class {'php::extension::opcache':
     ensure    => $php_opcache_version,
     provider  => 'pecl',
-    package   => $packagename,
+    package   => 'zendopcache',
     settings  => $array_php_opcache_settings,
   } ->
 
@@ -22,17 +23,4 @@ class softec_php::opcache {
     ensure  => link,
     target  => "${::php::params::config_root_ini}/opcache.ini"
   }
-
-  #TODO:VERIFICARE SE SERVE
-  #$ensure_conf_file = $ensure ? {
-  #  present => 'link',
-  #  default => 'absent',
-  #}
-
-  #file { "${php5::common::config::phpdir}/conf.d/10-zendopcache.ini":
-  #  ensure  => $ensure_conf_file,
-  #  target  => "${php5::common::config::phpdir}/mods-available/zendopcache.ini",
-  #  require => Concat_build['zendopcache']
-  #}
-
 }
