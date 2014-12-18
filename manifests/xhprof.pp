@@ -28,6 +28,6 @@ class softec_php::xhprof {
     owner   => root,
     group   => root,
     source  => "puppet:///modules/softec_php/xhprof.ini",
-    notify  => Exec['apache2-graceful']
+    notify  => Service['httpd']
   }
 }

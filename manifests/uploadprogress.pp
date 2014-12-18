@@ -17,7 +17,7 @@ class softec_php::uploadprogress {
       group   => root,
       mode    => 644,
       source  => "puppet:///modules/softec_php/uploadprogress.ini",
-      notify  => Service['apache2'],
+      notify  => Service['httpd'],
       require => Php::Extension['uploadprogress'],
     }
   }
