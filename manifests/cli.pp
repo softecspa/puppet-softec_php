@@ -11,9 +11,9 @@ class softec_php::cli {
   }
 
   softec_php::pin {'php5-cli':} ->
-
-  class{'php::cli':
-    ensure    => $php_version,
-    settings  => $array_php_cli_settings
-  }
+  include php::cli
+  #class{'php::cli':
+  #  ensure    => $php_version,
+  #  settings  => $array_php_cli_settings
+  #}
 }
