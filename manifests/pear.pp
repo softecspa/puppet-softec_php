@@ -36,8 +36,7 @@ class softec_php::pear{
   require softec_php
   $php_version = hiera('php_version')
 
-  softec_php::pin {'php5-pear':} ->
-
+  softec_php::pin {'php-pear':} ->
   class {'php::pear':
     ensure  => $php_version
   }
