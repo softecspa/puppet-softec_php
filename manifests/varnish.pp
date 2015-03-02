@@ -13,7 +13,7 @@ class softec_php::varnish {
   php::extension {'varnish':
     ensure    => $ensure,
     provider  => 'pecl',
-    package   => 'varnish-1.1.1',
+    package   => 'varnish',
     require   => Package['libvarnishapi-dev']
   } ->
 
