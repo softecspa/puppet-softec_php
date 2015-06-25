@@ -16,6 +16,9 @@ class softec_php {
 
   }
 
+  include php::composer
+  include php::composer::auto_update
+
   softec_php::pin {'php5-common':} ->
 
   php::contrib::base_package{'php5-common':
