@@ -1,5 +1,7 @@
 class softec_php {
 
+  include ::php
+
   $php_version  = hiera('php_version')
   $manage_repo  = hiera('php_manage_repo')
 
