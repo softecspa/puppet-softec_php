@@ -22,11 +22,9 @@ class softec_php {
     ensure  => $php_version
   }
 
-  #TODO: da eliminare, serve solo ad eliminare il file pushato precedentemente
-
-  file{'/etc/php5/conf.d/php-softec.ini':
-    ensure  => absent
-  }
+  # TODO:
+  # commentato, serviva solo ad eliminare il file pushato precedentemente
+  # file{'/etc/php5/conf.d/php-softec.ini': ensure  => absent }
 
   if defined(Class['apache']) {
     # Install extensions
