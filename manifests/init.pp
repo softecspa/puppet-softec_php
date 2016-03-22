@@ -1,4 +1,10 @@
+# Wrapper of PHP module
 class softec_php {
+
+  if $::operatingsystem != 'Ubuntu' {
+    fail("Recipes works only on Ubuntu, your are using ${::operatingsystem}")
+  }
+
 
   include ::php
 
@@ -8,12 +14,15 @@ class softec_php {
   if $manage_repo {
     $php_ppa      = hiera('php_ppa')
     $php_ppa_key  = hiera('php_ppa_key')
-    $mirror       = hiera('apt_mirror')
+    $mirror       = $::lsbdistcodename ? {
+      /hardy|lucid/ => true,
+      default       => false,
+    }
 
     softec_apt::ppa { $php_ppa:
-      mirror  => $mirror,
-      key     => $php_ppa_key,
-      before  => Softec_php::Pin['php5-common']
+      mirror => $mirror,
+      key    => $php_ppa_key,
+      before => Softec_php::Pin['php5-common']
     }
 
   }
@@ -26,10 +35,6 @@ class softec_php {
   php::contrib::base_package{'php5-common':
     ensure  => $php_version
   }
-
-  # TODO:
-  # commentato, serviva solo ad eliminare il file pushato precedentemente
-  # file{'/etc/php5/conf.d/php-softec.ini': ensure  => absent }
 
   if defined(Class['apache']) {
     # Install extensions
